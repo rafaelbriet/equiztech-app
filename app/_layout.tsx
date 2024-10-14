@@ -9,6 +9,8 @@ export default function RootLayout() {
               <Stack>
                   <Stack.Screen name="index" options={{ headerShown: false }} />
                   <Stack.Screen name="sign-in" options={{ title: 'Entrar', presentation: 'modal' }} />
+                  <Stack.Screen name="sign-up" options={{ title: 'Crie uma conta', presentation: 'modal' }} />
+                  <Stack.Screen name="(legal)" options={{ headerShown: false }}/>
               </Stack>
           </PaperProvider>
       </AppContextProvider>

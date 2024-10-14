@@ -25,7 +25,7 @@ export default function Index() {
         <Button mode='contained'>Fazer Login</Button>
       </Link>
 
-      <Link href='/sign-in' asChild>
+      <Link href='/sign-up' asChild>
         <Button mode='outlined'>Criar conta</Button>
       </Link>
     </View>
