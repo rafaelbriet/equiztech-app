@@ -36,7 +36,7 @@ export default function Index() {
                 setHasLoginFailed(true);
             } else {
                 setToken(data);
-                router.replace('/home')
+                router.replace('/(game)')
             }
         } catch (error) {
             console.error(error);
