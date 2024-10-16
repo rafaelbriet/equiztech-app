@@ -112,7 +112,7 @@ export default function Index() {
                         Fazer Login
                     </Button>
     
-                    <Link href='/sign-in' asChild>
+                    <Link href='/(password-reset)/step-1' asChild>
                         <Button mode='text'>Esqueci minha senha</Button>
                     </Link>
                 </View>
