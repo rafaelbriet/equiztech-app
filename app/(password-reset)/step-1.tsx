@@ -30,7 +30,7 @@ export default function Step1() {
         try {
             setHasRequestedPasswordReset(true);
             setRequestHasError(false);
-            const response = await fetch('https://equiztech.rafaelbriet.com.br/api/autenticacao/esqueci-minha-senha.php/', {
+            const response = await fetch(process.env.EXPO_PUBLIC_BASE_URL + '/api/autenticacao/esqueci-minha-senha.php/', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",

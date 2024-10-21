@@ -69,7 +69,7 @@ export default function Index() {
         }
 
         try {
-            const response = await fetch('https://equiztech.rafaelbriet.com.br/api/autenticacao/login.php', {
+            const response = await fetch(process.env.EXPO_PUBLIC_BASE_URL + '/api/autenticacao/login.php', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",

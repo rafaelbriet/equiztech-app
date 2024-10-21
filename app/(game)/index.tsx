@@ -1,12 +1,14 @@
 import { View } from "react-native";
 import React, { useContext, useEffect, useState } from 'react';
 import AppContext from '@/components/AppContext';
-import { router, useNavigation } from "expo-router";
+import { Link, router, useNavigation } from "expo-router";
 import { Button, Dialog, Portal, Text } from "react-native-paper";
+import UserProfileContext from "@/components/UserProfileContext";
 
 export default function Index() {
     const {token, setToken} = useContext(AppContext);
     const [logoutDialogAction, setLogoutDialogAction] = useState({} as any);
+    const {userProfile} = useContext(UserProfileContext)
 
     if (token == null) {
         console.log('needs token');
@@ -50,7 +52,10 @@ export default function Index() {
                 padding: 16
             }}
         >
-            <Text>{JSON.stringify(token)}</Text>
+            <Link href='/(game)/profile' asChild>
+                <Button mode='text'>Olá, {userProfile.usuario?.nome}!</Button>
+            </Link>
+            
             <Portal>
                 <Dialog visible={visible} onDismiss={hideDialog}>
                     <Dialog.Title>Você deseja sair do app?</Dialog.Title>

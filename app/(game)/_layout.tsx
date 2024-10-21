@@ -1,9 +1,13 @@
 import { Stack } from "expo-router";
+import UserProfileContextProvider from "@/components/UserProfileContextProvider";
 
 export default function GameLayout() {
   return (
-        <Stack>
+        <UserProfileContextProvider>
+          <Stack>
             <Stack.Screen name="index" options={{ title: 'Home', headerShown: true }} />
-        </Stack>
+            <Stack.Screen name="profile" options={{ title: 'Meu Perfil', headerShown: true }} />
+          </Stack>
+        </UserProfileContextProvider>
   );
 }
