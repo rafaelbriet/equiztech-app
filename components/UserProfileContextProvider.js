@@ -31,7 +31,7 @@ const UserProfileContextProvider = ({children}) => {
         const currentUser = await getCurrentUser();
         
         try {
-            const response = await fetch(process.env.EXPO_PUBLIC_BASE_URL + '/api/usuarios/?id=' + currentUser.usuario.id, {
+            const response = await fetch(process.env.EXPO_PUBLIC_BASE_URL + '/api/perfil/?id_usuario=' + currentUser.usuario.id, {
                 method: 'GET',
                 headers: {
                     "Content-Type": "application/json",
