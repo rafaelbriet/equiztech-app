@@ -34,10 +34,9 @@ export default function Index() {
         }
 
         try {
-            console.log(requestBody);
             setHasRequestedAccount(true);
             setRequestHasError(false);
-            const response = await fetch('https://equiztech.rafaelbriet.com.br/api/registro/', {
+            const response = await fetch(process.env.EXPO_PUBLIC_BASE_URL + '/api/registro/', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -49,7 +48,6 @@ export default function Index() {
             if (data.erro) {
                 setRequestHasError(true);
                 setRequestError(data.erro);
-                console.log(data.erro);
             } else {
                 await login();
             }
@@ -131,7 +129,7 @@ export default function Index() {
                     <TextInput
                         label="Data de Nascimento"
                         value={displayBirthday}
-                        onPressIn={() => {setDatePickerVisibility(true); console.log('hello')}}
+                        onPressIn={() => setDatePickerVisibility(true)}
                         showSoftInputOnFocus={false}
                         style={{
                             marginBottom: 16
