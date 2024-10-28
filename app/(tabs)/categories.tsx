@@ -3,7 +3,7 @@ import UserProfileContext from "@/components/UserProfileContext";
 import { Link } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import { FlatList, View } from "react-native";
-import { Text } from "react-native-paper";
+import { Button, Card, Text } from "react-native-paper";
 
 export default function Categories() {
     const [categories, setCategories] = useState<any[]>([]);
@@ -25,6 +25,19 @@ export default function Categories() {
         (async () => await fetchCategories())();
     }, [])
 
+    function renderCategory({item}: {item: any}) {
+        return (
+            <Card style={{ marginBottom: 16 }}>
+                <Card.Content>
+                    <Text variant="bodyMedium">{item.nome}</Text>
+                </Card.Content>
+                <Card.Actions>
+                    <Button>Começar</Button>
+                </Card.Actions>
+            </Card>
+        );
+    }
+
     return (
         <View
             style={{
@@ -35,7 +48,7 @@ export default function Categories() {
         >
             <Text variant="headlineLarge">Categorias</Text>
             <Text>Para começar um quiz selecione uma categoria.</Text>
-            <FlatList data={categories} renderItem={({item}) => <Link href={"/(tabs)/quiz"}>{item.nome}</Link>} />
+            <FlatList data={categories} renderItem={renderCategory} />
         </View>
     );
 }
