@@ -82,7 +82,7 @@ export default function Index() {
                 setRequestHasError(true);
             } else {
                 setToken(data);
-                router.replace('/home')
+                router.replace('/(tabs)')
             }
         } catch (error) {
             console.error(error);

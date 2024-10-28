@@ -36,7 +36,7 @@ export default function Index() {
                 setHasLoginFailed(true);
             } else {
                 setToken(data);
-                router.replace('/(game)')
+                router.replace('/(tabs)')
             }
         } catch (error) {
             console.error(error);
