@@ -23,7 +23,7 @@ export default function TabLayout() {
                     }}
                 />
                 <Tabs.Screen
-                    name="play"
+                    name="categories"
                     options={{
                         title: 'Jogar',
                         headerShown: true,

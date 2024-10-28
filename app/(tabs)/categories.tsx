@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { FlatList, View } from "react-native";
 import { Text } from "react-native-paper";
 
-export default function Play() {
+export default function Categories() {
     const [categories, setCategories] = useState<any[]>([]);
     const {token} = useContext(AppContext);
 
