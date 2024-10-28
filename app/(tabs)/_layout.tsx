@@ -30,6 +30,14 @@ export default function TabLayout() {
                         tabBarIcon: ({ color }) => <FontAwesome size={24} name="play-circle" color={color} />,
                     }}
                 />
+                <Tabs.Screen
+                    name="quiz"
+                    options={{
+                        title: 'Jogar',
+                        headerShown: true,
+                        href: null,
+                    }}
+                />
             </Tabs>
         </UserProfileContextProvider>
     );
