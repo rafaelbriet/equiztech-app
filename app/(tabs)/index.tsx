@@ -52,10 +52,8 @@ export default function Index() {
                 padding: 16
             }}
         >
-            <Link href='/(game)/profile' asChild>
-                <Button mode='text'>Olá, {userProfile.usuario?.nome}!</Button>
-            </Link>
-            
+
+            <Text>Aqui serão exibidas as estatísticas do jogador.</Text>
             <Portal>
                 <Dialog visible={visible} onDismiss={hideDialog}>
                     <Dialog.Title>Você deseja sair do app?</Dialog.Title>
