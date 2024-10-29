@@ -1,6 +1,6 @@
 import AppContext from "@/components/AppContext";
 import UserProfileContext from "@/components/UserProfileContext";
-import { Link } from "expo-router";
+import { router } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import { FlatList, View } from "react-native";
 import { Button, Card, Text } from "react-native-paper";
@@ -32,7 +32,7 @@ export default function Categories() {
                     <Text variant="bodyMedium">{item.nome}</Text>
                 </Card.Content>
                 <Card.Actions>
-                    <Button>Começar</Button>
+                    <Button onPress={() => { router.push({ pathname: '/(tabs)/quiz', params: { category_id: item.id, category_name: item.nome }})}}>Começar</Button>
                 </Card.Actions>
             </Card>
         );

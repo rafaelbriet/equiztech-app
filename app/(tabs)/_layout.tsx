@@ -1,11 +1,13 @@
-import { Tabs } from "expo-router";
+import { Tabs, usePathname } from "expo-router";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import UserProfileContextProvider from "@/components/UserProfileContextProvider";
 
 export default function TabLayout() {
+    const pathname = usePathname();
+    
     return (
         <UserProfileContextProvider>
-            <Tabs screenOptions={{ tabBarActiveTintColor: '#663399' }}>
+            <Tabs screenOptions={{ tabBarActiveTintColor: '#663399', tabBarLabelPosition: 'beside-icon', tabBarStyle: { display: pathname === '/quiz' ? 'none' : 'flex' } }}>
                 <Tabs.Screen
                     name="index"
                     options={{
@@ -33,8 +35,8 @@ export default function TabLayout() {
                 <Tabs.Screen
                     name="quiz"
                     options={{
-                        title: 'Jogar',
-                        headerShown: true,
+                        title: 'Quiz',
+                        headerShown: false,
                         href: null,
                     }}
                 />
