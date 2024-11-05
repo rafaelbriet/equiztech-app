@@ -32,7 +32,7 @@ export default function Categories() {
                     <Text variant="bodyMedium">{item.nome}</Text>
                 </Card.Content>
                 <Card.Actions>
-                    <Button onPress={() => { router.push({ pathname: '/(tabs)/quiz', params: { category_id: item.id, category_name: item.nome }})}}>Começar</Button>
+                    <Button onPress={() => { router.push({ pathname: '/(game)', params: { category_id: item.id, category_name: item.nome }})}}>Começar</Button>
                 </Card.Actions>
             </Card>
         );
