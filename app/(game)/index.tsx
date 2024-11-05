@@ -97,7 +97,7 @@ export default function Quiz() {
             <RadioButton.Group onValueChange={ value => setSelected(value) } value={selected}>
                 {quiz[currentQuestion].respostas.map((element: any) => {
                     return (
-                        <RadioButton.Item  label={element.texto_alternativa} value={element.id} position='leading' labelStyle={{ textAlign: 'left' }} />
+                        <RadioButton.Item  label={element.texto_alternativa} value={element.id} key={element.id} position='leading' labelStyle={{ textAlign: 'left' }} />
                     )
                 })}
             </RadioButton.Group>
