@@ -6,6 +6,7 @@ export default function GameLayout() {
         <UserProfileContextProvider>
             <Stack>
                 <Stack.Screen name="index" options={{ headerShown: false }} />
+                <Stack.Screen name="game-over" options={{ headerShown: false }} />
             </Stack>
         </UserProfileContextProvider>
     );
