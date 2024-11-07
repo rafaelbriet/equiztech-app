@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "equiztech.app",
-    "slug": "equiztech.app",
+    "slug": "equiztech",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.equiztech.app"
     },
     "web": {
       "bundler": "metro",
@@ -31,6 +32,12 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0f9c2423-28d7-4783-a620-a98d10e588b7"
+      }
+    },
+    "owner": "rafaelbriet"
   }
 }
