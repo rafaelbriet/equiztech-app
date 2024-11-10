@@ -4,6 +4,7 @@ import AppContext from './AppContext';
 
 const UserProfileContextProvider = ({children}) => {
     const [userProfile, setUserProfile] = useState({});
+    const [isUserProfileLoaded, setIsUserProfileLoaded] = useState(false);
     const {token} = useContext(AppContext);
 
     async function getCurrentUser() {
@@ -28,6 +29,7 @@ const UserProfileContextProvider = ({children}) => {
     }
 
     async function loadUserProfile() {
+        setIsUserProfileLoaded(false);
         const currentUser = await getCurrentUser();
         
         try {
@@ -44,6 +46,7 @@ const UserProfileContextProvider = ({children}) => {
                 console.error(data.erro);
             } else {
                 setUserProfile(data);
+                setIsUserProfileLoaded(true);
             }
         } catch (error) {
             console.error(error);
@@ -55,7 +58,7 @@ const UserProfileContextProvider = ({children}) => {
     }, []);
 
     return (
-        <UserProfileContext.Provider value={{ userProfile, setUserProfile }}>
+        <UserProfileContext.Provider value={{ userProfile, setUserProfile, isUserProfileLoaded }}>
             {children}
         </UserProfileContext.Provider>
     )

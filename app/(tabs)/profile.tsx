@@ -8,19 +8,30 @@ import UserProfileContext from "@/components/UserProfileContext";
 
 export default function Profile() {
     const {token} = useContext(AppContext);
-    const {userProfile, setUserProfile} = useContext(UserProfileContext);
-    const [name, setName] = useState(userProfile.usuario.nome);
-    const [surname, setSurname] = useState(userProfile.usuario.sobrenome);
-    const [bio, setBio] = useState(userProfile.usuario.biografia);
-    const [birthday, setBirthday] = useState(userProfile.usuario.data_nascimento);
-    const [displayBirthday, setDisplayBirthday] = useState(userProfile.usuario.data_nascimento);
-    const [email, setEmail] = useState(userProfile.usuario.email);
+    const {userProfile, setUserProfile, isUserProfileLoaded} = useContext(UserProfileContext);
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [bio, setBio] = useState('');
+    const [birthday, setBirthday] = useState('');
+    const [displayBirthday, setDisplayBirthday] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [hasRequestedProfileUpdate, setHasRequestedProfileUpdate] = useState(false);
     const [requestHasErrors, setRequestHasError] = useState(false);
     const [requestError, setRequestError] = useState({} as any);
     const [hasUpdateSucceed, setHasUpdateSucceed] = useState(false);
+    const [hasSetUserProfile, setHasSetUserProfile] = useState(false);
+
+    if (hasSetUserProfile == false && isUserProfileLoaded) {
+        setName(userProfile.usuario.nome);
+        setSurname(userProfile.usuario.sobrenome);
+        setBio(userProfile.usuario.biografia);
+        setBirthday(userProfile.usuario.data_nascimento);
+        setDisplayBirthday(userProfile.usuario.data_nascimento);
+        setEmail(userProfile.usuario.email);
+        setHasSetUserProfile(true);
+    }
 
     async function updateUser() {
         const requestBody = {
@@ -74,6 +85,20 @@ export default function Profile() {
 
         setBirthday(`${year}-${month}-${day}`);
         setDisplayBirthday(`${day}/${month}/${year}`);
+    }
+
+    if (isUserProfileLoaded == false) {
+        return (
+            <View
+                style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    padding: 16
+                }}
+            >
+                <ActivityIndicator animating={true} />
+            </View>
+        );
     }
 
     return (
