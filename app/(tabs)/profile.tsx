@@ -24,16 +24,15 @@ export default function Profile() {
 
     async function updateUser() {
         const requestBody = {
-            usuario: {
-                email: email,
-                senha: password.trim() == '' ? null : password,
-                id_nivel_acesso: userProfile.usuario.id_nivel_acesso,
-                id_dados_pessoais: userProfile.usuario.id_dados_pessoais,
+            dados_pessoais: {
                 nome: name,
                 sobrenome: surname,
                 data_nascimento: birthday,
                 biografia: bio,
                 nome_foto: "",
+            },
+            usuario: {
+                email: email,
             }
         }
 
