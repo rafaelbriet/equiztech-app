@@ -44,7 +44,7 @@ export default function Profile() {
             const params = new URLSearchParams({
                 id: userProfile.usuario.id
             });
-            const response = await fetch(process.env.EXPO_PUBLIC_BASE_URL + '/api/usuarios/?' + params.toString(), {
+            const response = await fetch(process.env.EXPO_PUBLIC_BASE_URL + '/api/perfil/?' + params.toString(), {
                 method: 'PUT',
                 headers: {
                     "Content-Type": "application/json",
