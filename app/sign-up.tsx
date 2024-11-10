@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import React, {useState, useContext} from 'react';
 import { ActivityIndicator, Button, Checkbox, Snackbar, TextInput } from 'react-native-paper';
 import { Link, router } from "expo-router";
@@ -107,96 +107,98 @@ export default function Index() {
             {hasRequestedAccount ? (<ActivityIndicator animating={true} />) : null}
 
             {!hasRequestedAccount ? (
-                <View>
-                    <TextInput
-                        label="Nome"
-                        value={name}
-                        onChangeText={name => setName(name)}
-                        style={{
-                            marginBottom: 16
-                        }}
-                    />
-
-                    <TextInput
-                        label="Sobrenome"
-                        value={surname}
-                        onChangeText={surname => setSurname(surname)}
-                        style={{
-                            marginBottom: 16
-                        }}
-                    />
-
-                    <TextInput
-                        label="Data de Nascimento"
-                        value={displayBirthday}
-                        onPressIn={() => setDatePickerVisibility(true)}
-                        showSoftInputOnFocus={false}
-                        style={{
-                            marginBottom: 16
-                        }}
-                    />
-
-                    <DateTimePickerModal
-                        isVisible={isDatePickerVisible}
-                        mode="date"
-                        onConfirm={(date) => {setDatePickerVisibility(false); formatBirthDay(date)}}
-                        onCancel={() => setDatePickerVisibility(false)}
-                    />
-
-                    <TextInput
-                        label="Email"
-                        value={email}
-                        onChangeText={email => setEmail(email)}
-                        inputMode='email'
-                        style={{
-                            marginBottom: 16
-                        }}
-                    />
-
-                    <TextInput
-                        label="Senha"
-                        value={password}
-                        onChangeText={password => setPassword(password)}
-                        secureTextEntry={true}
-                        style={{
-                            marginBottom: 16
-                        }}
-                    />
-
-                    <View
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            marginBottom: 16
-                        }}
-                    >
-                        <Checkbox
-                            status={acceptTerms ? 'checked' : 'unchecked'}
-                            onPress={() => {
-                                setAcceptTerms(!acceptTerms);
+                <ScrollView>
+                    <View>
+                        <TextInput
+                            label="Nome"
+                            value={name}
+                            onChangeText={name => setName(name)}
+                            style={{
+                                marginBottom: 16
                             }}
                         />
-                        <Text
+
+                        <TextInput
+                            label="Sobrenome"
+                            value={surname}
+                            onChangeText={surname => setSurname(surname)}
                             style={{
-                                flex: 1,
-                                flexWrap: 'wrap'
+                                marginBottom: 16
+                            }}
+                        />
+
+                        <TextInput
+                            label="Data de Nascimento"
+                            value={displayBirthday}
+                            onPressIn={() => setDatePickerVisibility(true)}
+                            showSoftInputOnFocus={false}
+                            style={{
+                                marginBottom: 16
+                            }}
+                        />
+
+                        <DateTimePickerModal
+                            isVisible={isDatePickerVisible}
+                            mode="date"
+                            onConfirm={(date) => {setDatePickerVisibility(false); formatBirthDay(date)}}
+                            onCancel={() => setDatePickerVisibility(false)}
+                        />
+
+                        <TextInput
+                            label="Email"
+                            value={email}
+                            onChangeText={email => setEmail(email)}
+                            inputMode='email'
+                            style={{
+                                marginBottom: 16
+                            }}
+                        />
+
+                        <TextInput
+                            label="Senha"
+                            value={password}
+                            onChangeText={password => setPassword(password)}
+                            secureTextEntry={true}
+                            style={{
+                                marginBottom: 16
+                            }}
+                        />
+
+                        <View
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                                marginBottom: 16
                             }}
                         >
-                            Aceito os <Link href={'/(legal)/terms-of-service'} style={{color: 'blue'}}>Termos de Serviço</Link> e <Link href={'/(legal)/privacy-policy'} style={{color: 'blue'}}>Política de Privacidade</Link>.
-                        </Text>
-                    </View>
+                            <Checkbox
+                                status={acceptTerms ? 'checked' : 'unchecked'}
+                                onPress={() => {
+                                    setAcceptTerms(!acceptTerms);
+                                }}
+                            />
+                            <Text
+                                style={{
+                                    flex: 1,
+                                    flexWrap: 'wrap'
+                                }}
+                            >
+                                Aceito os <Link href={'/(legal)/terms-of-service'} style={{color: 'blue'}}>Termos de Serviço</Link> e <Link href={'/(legal)/privacy-policy'} style={{color: 'blue'}}>Política de Privacidade</Link>.
+                            </Text>
+                        </View>
 
-                    <Button
-                        mode='contained'
-                        onPress={signup}
-                        style={{
-                            marginBottom: 16
-                        }}
-                    >
-                        Criar conta
-                    </Button>
-                </View>
+                        <Button
+                            mode='contained'
+                            onPress={signup}
+                            style={{
+                                marginBottom: 16
+                            }}
+                        >
+                            Criar conta
+                        </Button>
+                    </View>
+                </ScrollView>
             ) : null}
             <Snackbar
                 visible={requestHasErrors}
