@@ -1,6 +1,6 @@
 import AppContext from "@/components/AppContext";
 import { Link, useLocalSearchParams } from "expo-router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 import { ActivityIndicator, Button, Text } from "react-native-paper";
 
@@ -10,7 +10,14 @@ export default function GameOver() {
     const {token} = useContext(AppContext);
     const [corrects, setCorrects] = useState(0);
     const [isCorrecting, setIsCorrecting] = useState(false);
+    const hasMatchBeenSaved: any = useRef(false);
+
     async function saveMatch() {
+        if (hasMatchBeenSaved.current) {
+            console.log('Match already saved.');
+            return;
+        }
+
         try {
             const requestBody = {
                 partida: matchDetails
@@ -24,6 +31,14 @@ export default function GameOver() {
                 body: JSON.stringify(requestBody)
             });
             const data = await response.json();
+
+            if (data.erro) {
+                
+            } else {
+                hasMatchBeenSaved.current = true;
+                console.log('Match saved');
+                
+            }
         } catch (error) {
             console.error(error);
         }
