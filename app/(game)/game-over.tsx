@@ -2,14 +2,14 @@ import AppContext from "@/components/AppContext";
 import { Link, useLocalSearchParams } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import { View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { ActivityIndicator, Button, Text } from "react-native-paper";
 
 export default function GameOver() {
     const param: any = useLocalSearchParams();
     const matchDetails = JSON.parse(param.match);
     const {token} = useContext(AppContext);
     const [corrects, setCorrects] = useState(0);
-
+    const [isCorrecting, setIsCorrecting] = useState(false);
     async function saveMatch() {
         try {
             const requestBody = {
@@ -30,37 +30,51 @@ export default function GameOver() {
     }
 
     async function verifyAnswers() {
-        let totalCorrects = 0;
-
-        matchDetails.respostas.forEach(async (element: any) => {
-            try {
-                const params = new URLSearchParams({
-                    id: element.id_pergunta
-                });
-                const response = await fetch(process.env.EXPO_PUBLIC_BASE_URL + '/api/perguntas/?' + params.toString(), {
-                    method: 'GET',
-                    headers: {
-                        "Content-Type": "application/json",
-                        "authorization": 'Bearer ' + token.token,
-                    },
-                });
-                const data = await response.json();
-                const answerFromDB = data.pergunta.respostas.find((a: any)=> a.id == element.id_resposta_escolhida);
-                
-                if (answerFromDB.correta == true) {
-                    totalCorrects = totalCorrects + 1;
-                    setCorrects(totalCorrects);
-                }
-            } catch (error) {
-                console.error(error);
+        try {
+            setIsCorrecting(true);
+            const requestBody = {
+                respostas: matchDetails.respostas
             }
-        });
+            const response = await fetch(process.env.EXPO_PUBLIC_BASE_URL + '/api/perguntas/corrigir.php/', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "authorization": 'Bearer ' + token.token,
+                },
+                body: JSON.stringify(requestBody),
+            });
+            const data = await response.json();
+            
+            if (data.erro) {
+                console.error(data.erro.mensagem);
+            } else {
+                setCorrects(data.total_respostas_corretas);
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsCorrecting(false);
+        }
     }
 
     useEffect(() => {
         (async () => await verifyAnswers())();
         (async () => await saveMatch())();
     }, []);
+
+    if (isCorrecting) {
+        return (
+            <View
+                style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    padding: 16
+                }}
+            >
+                <ActivityIndicator animating={true} />
+            </View>
+        );
+    }
 
     return (
         <View
