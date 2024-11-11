@@ -15,7 +15,6 @@ export default function Profile() {
     const [birthday, setBirthday] = useState('');
     const [displayBirthday, setDisplayBirthday] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
     const [hasRequestedProfileUpdate, setHasRequestedProfileUpdate] = useState(false);
     const [requestHasErrors, setRequestHasError] = useState(false);
@@ -165,16 +164,6 @@ export default function Profile() {
                             value={email}
                             onChangeText={email => setEmail(email)}
                             inputMode='email'
-                            style={{
-                                marginBottom: 16
-                            }}
-                        />
-
-                        <TextInput
-                            label="Senha"
-                            value={password}
-                            onChangeText={password => setPassword(password)}
-                            secureTextEntry={true}
                             style={{
                                 marginBottom: 16
                             }}
