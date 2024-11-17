@@ -13,7 +13,6 @@ export default function Index() {
     const [isFetchingAchievements, setIsFetchingAchievements] = useState(true);
 
     if (token == null) {
-        console.log('needs token');
         router.replace('/sign-in');
     }
 
@@ -57,7 +56,6 @@ export default function Index() {
                 console.error(data.erro);
             } else {
                 setAchievement(data);
-                console.log('achievements fetched');
             }
         } catch (error) {
             console.error(error);
@@ -65,21 +63,13 @@ export default function Index() {
     }
 
     useEffect(() => {
-        console.log('achievements length: ' + Object.keys(achievements).length);
-        
         if (Object.keys(achievements).length > 0) {
             setIsFetchingAchievements(false);
-            console.log('achievements loaded:');
-            console.log(achievements);
         }
     }, [achievements])
 
     useEffect(() => {
-        console.log('isUserProfileLoaded:' + isUserProfileLoaded);
         if (isUserProfileLoaded) {
-            console.log('fetching Achievements');
-            console.log(userProfile);
-            
             (async () => await fetchAchievements())();
         }
     }, [isUserProfileLoaded]);

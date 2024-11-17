@@ -14,7 +14,6 @@ export default function GameOver() {
 
     async function saveMatch() {
         if (hasMatchBeenSaved.current) {
-            console.log('Match already saved.');
             return;
         }
 
@@ -36,8 +35,6 @@ export default function GameOver() {
                 
             } else {
                 hasMatchBeenSaved.current = true;
-                console.log('Match saved');
-                
             }
         } catch (error) {
             console.error(error);
