@@ -73,12 +73,20 @@ export default function GameOver() {
     }
 
     function getChosenAnswer(question: any): string {
+        if (correctedQuiz.respostas == undefined) {
+            return '';
+        }
+
         let chosenAnswerId = correctedQuiz.respostas.find((element: any) => element.id_pergunta == question.id).id_resposta;
         let chosenAnswerText = question.respostas.find((element: any) => element.id == chosenAnswerId).texto_alternativa;
         return chosenAnswerText;
     }
 
     function isQuizAnsweredCorrectly(question: any): boolean {
+        if (correctedQuiz.respostas == undefined) {
+            return false;
+        }
+
         let chosenAnswer = correctedQuiz.respostas.find((element: any) => element.id_pergunta == question.id);
         return chosenAnswer.correta == 1;
     }
