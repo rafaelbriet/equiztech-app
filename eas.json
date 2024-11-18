@@ -12,10 +12,16 @@
       "distribution": "internal",
       "android": {
         "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_BASE_URL": "https://equiztech.rafaelbriet.com.br"
       }
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_BASE_URL": "https://equiztech.rafaelbriet.com.br"
+      }
     }
   },
   "submit": {
