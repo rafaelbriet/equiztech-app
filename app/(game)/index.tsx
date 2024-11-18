@@ -51,7 +51,7 @@ export default function Quiz() {
         matchDetails.current.id_usuario = userProfile.usuario.id;
         matchDetails.current.encerrada_em = getNowFormatted();
         matchDetails.current.respostas = questionAnswer.current;
-        router.replace({ pathname: '/(game)/game-over', params: { match: JSON.stringify(matchDetails.current) } });
+        router.replace({ pathname: '/(game)/game-over', params: { match: JSON.stringify(matchDetails.current), quiz: JSON.stringify({perguntas: quiz}) } });
     }
 
     function startQuiz() {
